@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jigyasa Yadav — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #12141C;
+    --surface:   #1A1D28;
+    --line:      #2A2E3D;
+    --ink:       #EDEAE3;
+    --ink-dim:   #8B8FA3;
+    --gold:      #C9A227;
+    --gold-dim:  #7A6A2E;
+
+    --display: 'Fraunces', serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--gold); color:var(--bg); }
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    padding:28px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    mix-blend-mode:difference;
+  }
+  .nav-mark{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    position:relative;
+    opacity:0.75;
+    transition:opacity 0.25s ease;
+  }
+  .nav-links a:hover{ opacity:1; }
+
+  @media (max-width:640px){
+    .nav-links{ gap:18px; }
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:120px 40px 80px;
+    position:relative;
+  }
+
+  .hero-eyebrow{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:28px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .hero-eyebrow::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--gold);
+  }
+
+  .hero-name{
+    font-family:var(--display);
+    font-weight:450;
+    font-size:clamp(2.6rem, 7vw, 6.5rem);
+    line-height:0.94;
+    letter-spacing:-0.01em;
+    max-width:1100px;
+  }
+  .hero-name em{
+    font-style:italic;
+    font-weight:450;
+    color:var(--gold);
+  }
+
+  .hero-foot{
+    margin-top:56px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+
+  .hero-role{
+    font-family:var(--body);
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--ink-dim);
+    max-width:420px;
+  }
+  .hero-role strong{ color:var(--ink); font-weight:500; }
+
+  .hero-meta{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    text-align:right;
+  }
+  .hero-meta div + div{ margin-top:6px; }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:32px;
+    right:40px;
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    writing-mode:vertical-rl;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    animation:float 2.4s ease-in-out infinite;
+  }
+  .scroll-cue::after{
+    content:'';
+    width:1px; height:36px;
+    background:var(--ink-dim);
+  }
+  @keyframes float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(8px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-cue{ animation:none; }
+  }
+  @media (max-width:640px){ .scroll-cue{ display:none; } }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section-label{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:44px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .section-label::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--gold);
+  }
+
+  section{ padding:120px 0; }
+  section#work{ padding-bottom:60px; }
+
+  /* ---------- WORK INDEX ---------- */
+  .index-list{
+    border-top:1px solid var(--line);
+  }
+  .index-row{
+    display:grid;
+    grid-template-columns:60px 1fr auto auto;
+    align-items:center;
+    gap:28px;
+    padding:30px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    cursor:pointer;
+    transition:padding-left 0.35s cubic-bezier(.16,1,.3,1);
+  }
+  .index-row:hover{ padding-left:16px; }
+
+  .index-num{
+    font-family:var(--mono);
+    font-size:9px;
+    color:var(--ink-dim);
+  }
+  .index-title{
+    font-family:var(--display);
+    font-size:clamp(1.3rem, 2.8vw, 2.1rem);
+    font-weight:450;
+    transition:color 0.3s ease;
+  }
+  .index-row:hover .index-title{ color:var(--gold); }
+
+  .index-tags{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--ink-dim);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    text-align:right;
+    display:none;
+  }
+  .index-year{
+    font-family:var(--mono);
+    font-size:9px;
+    color:var(--ink-dim);
+  }
+
+  @media (min-width:800px){
+    .index-tags{ display:block; }
+  }
+  @media (max-width:640px){
+    .index-row{ grid-template-columns:34px 1fr auto; }
+    .index-year{ display:none; }
+  }
+
+  .preview-panel{
+    position:fixed;
+    top:50%; left:50%;
+    width:340px;
+    aspect-ratio:4/5;
+    transform:translate(-50%,-50%) scale(0.92);
+    border-radius:2px;
+    overflow:hidden;
+    pointer-events:none;
+    opacity:0;
+    z-index:50;
+    transition:opacity 0.3s ease, transform 0.3s ease;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  .preview-panel.active{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+  .preview-panel img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  @media (max-width:900px){
+    .preview-panel{ display:none; }
+  }
+
+  /* ---------- PROJECT CARDS ---------- */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .project-card{
+    background:var(--bg);
+    padding:36px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    transition:background 0.3s ease;
+  }
+  .project-card:hover{ background:var(--surface); }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+  }
+  .card-num{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--ink-dim);
+  }
+  .card-tags{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    text-align:right;
+  }
+
+  .card-thumb{
+    width:100%;
+    aspect-ratio:16/10;
+    overflow:hidden;
+    border-radius:1px;
+  }
+  .card-thumb img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(0.15);
+    transition:transform 0.5s cubic-bezier(.16,1,.3,1), filter 0.5s ease;
+  }
+  .project-card:hover .card-thumb img{
+    transform:scale(1.04);
+    filter:grayscale(0);
+  }
+
+  .card-headline{
+    font-family:var(--display);
+    font-weight:450;
+    font-size:1.3rem;
+    line-height:1.15;
+  }
+  .card-desc{
+    font-family:var(--body);
+    font-size:13px;
+    line-height:1.6;
+    color:var(--ink-dim);
+    max-width:44ch;
+  }
+
+  .card-link{
+    margin-top:auto;
+    padding-top:8px;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    width:fit-content;
+    border-bottom:1px solid var(--line);
+    padding-bottom:6px;
+    transition:color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+  }
+  .card-link svg{ width:12px; height:12px; flex-shrink:0; transition:transform 0.25s ease; }
+  .project-card:hover .card-link{
+    color:var(--gold);
+    border-color:var(--gold-dim);
+  }
+  .project-card:hover .card-link svg{ transform:translate(2px,-2px); }
+
+  @media (max-width:800px){
+    .card-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- WORK EXPERIENCE ---------- */
+.exp-list{
+  border-top:1px solid var(--line);
+}
+.exp-row{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:32px;
+  padding:34px 0;
+  border-bottom:1px solid var(--line);
+}
+.exp-period{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+  padding-top:4px;
+}
+.exp-role{
+  font-family:var(--display);
+  font-size:1.2rem;
+  font-weight:450;
+  margin-bottom:6px;
+}
+.exp-role span{ color:var(--gold); font-style:italic; }
+.exp-desc{
+  font-family:var(--body);
+  font-size:13.5px;
+  line-height:1.65;
+  color:var(--ink-dim);
+  max-width:60ch;
+}
+@media (max-width:640px){
+  .exp-row{ grid-template-columns:1fr; gap:10px; }
+}
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+  }
+  .about-text p{
+    font-size:14px;
+    line-height:1.75;
+    color:var(--ink-dim);
+    max-width:52ch;
+  }
+  .about-text p + p{ margin-top:22px; }
+  .about-text strong{ color:var(--ink); font-weight:500; }
+
+  .about-facts{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  .fact{
+    border-bottom:1px solid var(--line);
+    padding-bottom:20px;
+  }
+  .fact-label{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:8px;
+  }
+  .fact-value{
+    font-family:var(--body);
+    font-size:14px;
+    color:var(--ink);
+  }
+
+  @media (max-width:800px){
+    .about-grid{ grid-template-columns:1fr; gap:48px; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  footer#contact{
+    padding:120px 0 60px;
+    border-top:1px solid var(--line);
+  }
+  .contact-line{
+    font-family:var(--display);
+    font-weight:450;
+    font-size:clamp(1.9rem, 5vw, 3.8rem);
+    line-height:1.08;
+    max-width:900px;
+  }
+  .contact-line a{
+    color:var(--gold);
+    border-bottom:1px solid var(--gold-dim);
+    transition:border-color 0.25s ease, opacity 0.25s ease;
+  }
+  .contact-line a:hover{ opacity:0.75; }
+
+  .contact-foot{
+    margin-top:70px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:20px;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .contact-social{
+    display:flex;
+    gap:24px;
+  }
+  .contact-social a{
+    position:relative;
+    opacity:0.8;
+    transition:opacity 0.25s ease;
+  }
+  .contact-social a:hover{ opacity:1; color:var(--gold); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="nav-mark">Jigyasa Yadav — DEV</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap" style="padding:0;">
+    <div class="hero-eyebrow">Portfolio — Since 2023</div>
+    <h1 class="hero-name">Jigyasa<br>Yadav — <em>software</em><br>developer.</h1>
+    <div class="hero-foot">
+      <p class="hero-role">Based in <strong>Ahmedabad</strong>, building web apps and backend systems and products.</p>
+      <div class="hero-meta">
+        <div></div>
+        <div>jigyasayadav814@gmail.com</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll to browse</div>
+</header>
+
+<main class="wrap">
+    <section id="work">
+        <div class="section-label">Projects — 01</div>
+      
+        <div class="card-grid">
+      
+          <!-- Project 01 — Ecommerce Webstore -->
+          <a class="project-card"
+             href="https://github.com/jigyasa0309/Ecommerce_Webstore"
+             target="_blank"
+             rel="noopener">
+      
+            <div class="card-top">
+              <span class="card-num">01</span>
+              <span class="card-tags">PHP · WordPress · MySQL</span>
+            </div>
+      
+            <div class="card-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+                alt="Ecommerce Webstore project">
+            </div>
+      
+            <h3 class="card-headline">Ecommerce Webstore</h3>
+      
+            <p class="card-desc">
+              A web-based e-commerce platform built with PHP and WordPress,
+              designed to provide an engaging online shopping experience with
+              product management and dynamic web content.
+            </p>
+      
+            <span class="card-link">
+              View repo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </span>
+      
+          </a>
+      
+      
+          <!-- Project 02 — Certificate Generator -->
+          <a class="project-card"
+             href="https://github.com/jigyasa0309/certificate_generator"
+             target="_blank"
+             rel="noopener">
+      
+            <div class="card-top">
+              <span class="card-num">02</span>
+              <span class="card-tags">PHP · MySQL · HTML · CSS</span>
+            </div>
+      
+            <div class="card-thumb">
+              <img
+                src="https://raw.githubusercontent.com/jigyasa0309/certificate_generator/master/BACKHGROUND.jpg"
+                alt="Certificate Generator project">
+            </div>
+      
+            <h3 class="card-headline">Certificate Generator</h3>
+      
+            <p class="card-desc">
+              A PHP-based certificate generation system with user authentication,
+              database integration, certificate creation, and downloadable
+              certificates through a web-based interface.
+            </p>
+      
+            <span class="card-link">
+              View repo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </span>
+      
+          </a>
+      
+      
+          <!-- Project 03 — MapStruct REST API -->
+          <a class="project-card"
+             href="https://github.com/jigyasa0309/demoUsingMapstruct"
+             target="_blank"
+             rel="noopener">
+      
+            <div class="card-top">
+              <span class="card-num">03</span>
+              <span class="card-tags">Java · Spring Boot · MapStruct</span>
+            </div>
+      
+            <div class="card-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=80"
+                alt="Java Spring Boot MapStruct project">
+            </div>
+      
+            <h3 class="card-headline">MapStruct REST API</h3>
+      
+            <p class="card-desc">
+              A Spring Boot REST API demonstrating DTO-to-entity mapping with
+              MapStruct, layered service architecture, repository integration,
+              and cycle-avoidance handling for efficient object mapping.
+            </p>
+      
+            <span class="card-link">
+              View repo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </span>
+      
+          </a>
+      
+      
+          <!-- Project 04 — Floral Studio -->
+          <a class="project-card"
+             href="https://github.com/jigyasa0309/floral-studio"
+             target="_blank"
+             rel="noopener">
+      
+            <div class="card-top">
+              <span class="card-num">04</span>
+              <span class="card-tags">HTML · CSS · Web Design</span>
+            </div>
+      
+            <div class="card-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80"
+                alt="Floral Studio website">
+            </div>
+      
+            <h3 class="card-headline">Floral Studio — Flower Shop</h3>
+      
+            <p class="card-desc">
+              A visually engaging flower-shop website featuring a clean and
+              elegant interface designed to showcase floral products and provide
+              a simple, user-friendly browsing experience.
+            </p>
+      
+            <span class="card-link">
+              View repo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </span>
+      
+          </a>
+      
+        </div>
+      </section>
+  
+  <section id="experience">
+    <div class="section-label">Work Experience — 02</div>
+    <!-- Each .exp-row is one role. Edit period, title, company, and description. -->
+    <div class="exp-list">
+      <div class="exp-row">
+        <div class="exp-period">Dec'25 — Present</div>
+        <div>
+          <h3 class="exp-role">Software Engineer <span>@ Tatvasoft</span></h3>
+          <p class="exp-desc">Developing web platform features for a fintech product using Java Spring Boot on the backend and Angular on the frontend, with a focus on secure, scalable financial workflows.</p>        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-period">Dec'24 — Nov'25</div>
+        <div>
+          <h3 class="exp-role">Software Engineer <span>@ Raapyd (Alticon Technologies)</span></h3>
+          <p class="exp-desc">Contributed to backend product development, designing and building REST APIs and core services that powered the platform's day-to-day functionality.</p>
+        </div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-period">Aug'24 — Dec'24</div>
+        <div>
+          <h3 class="exp-role">Software Engineer <span>@ Ficode Software Solutions</span></h3>
+          <p class="exp-desc">Built and maintained desktop application services in JavaFX, and led the migration of an Android application to a JavaFX-based desktop client.</p>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-period">Jun'23 — Aug'24</div>
+        <div>
+          <h3 class="exp-role">Associate Software Developer <span>@ Brainvire Infotech</span></h3>
+          <p class="exp-desc">Built demo applications using both Spring Boot microservices and monolithic architectures, gaining hands-on experience across the full backend stack.</p>        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="section-label">About — 03</div>
+    <div class="about-grid">
+      <div class="about-text">
+        
+        <p>I'm a software developer with experience across <strong>frontend, backend</strong> development, focused on building clean, maintainable solutions that solve real-world problems.</p>
+        <p>Currently holding 3+ years of experience working with Tatvasoft. I studied computer science, and now split my time between full-time engineering work and side projects.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact">
+          <div class="fact-label">Stack</div>
+          <div class="fact-value">Java, Angular, Html/css, java8, Spring Boot, Spring, Hibernate/JPA, REST APIs</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Microservices &amp; Messaging</div>
+          <div class="fact-value">Kafka, Eureka, API Gateway</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Data &amp; Tools</div>
+          <div class="fact-value">PostgreSQL, MySQL, MongoDB, Redis, Git, Jenkins, Maven, Postman, APIgee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ </main>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="contact-line">Have a project in mind? <a href="mailto:jigyasayadav814@gmail.com">Let's talk — jigyasayadav814@gmail.com</a></p>
+    <div class="contact-foot">
+      <span>© 2026 Jigyasa Yadav</span>
+      <div class="contact-social">
+        <a href="https://github.com/jigyasa0309" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/jigyasa-yadav-153031211" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
